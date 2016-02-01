@@ -54,7 +54,7 @@ namespace TaskStart.ViewModel
                 if (_tasks != value)
                 {
                     _tasks = value;
-                    RaisePropertyChanged("Tasks");
+                    RaisePropertyChanged(nameof(Tasks));
                 }
             }
         }
@@ -95,7 +95,7 @@ namespace TaskStart.ViewModel
         // Сохранение списка в файл
         public void Save()
         {
-            Settings.Instance.SetTasks(Tasks.Select(x => x.GetTask()));
+            Settings.Instance.SetTasks(Tasks.Select(vm => vm.GetTask()));
         }
 
         // Загрузка списка из файла
@@ -105,9 +105,7 @@ namespace TaskStart.ViewModel
             {
                 var tasks = Settings.Instance.GetTasks();
                 foreach (var task in tasks.OrderBy(x => x.Category).ThenBy(x => x.Title))
-                {
                     _tasks.Add(new TaskViewModel(task));
-                }
             }
             catch
             {

@@ -40,14 +40,11 @@ namespace TaskStart
 
         private void WindowDrop(object sender, DragEventArgs e)
         {
-            if (e.Data is DataObject && ((DataObject) e.Data).ContainsFileDropList())
-            {
-                foreach (var filePath in ((DataObject) e.Data).GetFileDropList())
-                {
+            var data = e.Data as DataObject;
+            if (data != null && data.ContainsFileDropList())
+                foreach (var filePath in data.GetFileDropList())
                     if (File.Exists(filePath))
                         _model.Add(filePath);
-                }
-            }
         }
     }
 }
