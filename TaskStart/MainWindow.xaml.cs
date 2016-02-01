@@ -38,7 +38,7 @@ namespace TaskStart
         }
 
 
-        private void WindowDrop(object sender, DragEventArgs e)
+        private void windowDrop(object sender, DragEventArgs e)
         {
             var data = e.Data as DataObject;
             if (data != null && data.ContainsFileDropList())
